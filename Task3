@@ -1,0 +1,69 @@
+#include <iostream>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+void read_nums(queue<int>& aa) {
+    int num;
+    char c;
+    while (cin >> num) {
+        aa.push(num);
+        c = getchar();
+        if (c == '\n') {
+            break;
+        }
+    }
+}
+
+int main() {
+    queue<int> first;
+    queue<int> second;
+//    read_nums(first);
+//    read_nums(second);
+    int a = 0;
+    for (int i = 0; i < 10; i++) {
+        cin >> a;
+        if (i < 5) {
+            first.push(a);
+        }
+        else {
+            second.push(a);
+        }
+    }
+
+    int r = 0;
+    while (!first.empty() && !second.empty() && r <= 1000000){
+        if (first.front() == 0 && second.front() == 9) {
+            first.push(0);
+            first.push(9);
+        }
+        else if (first.front() == 9 && second.front() == 0) {
+            second.push(9);
+            second.push(0);
+        }
+        else if (first.front() > second.front()) {
+            first.push(first.front());
+            first.push(second.front());
+        }
+        else if (second.front() > first.front()) {
+            second.push(first.front());
+            second.push(second.front());
+        }
+        first.pop();
+        second.pop();
+        r++;
+    }
+
+    if (first.empty()){
+        cout << "second " << r << endl;
+    }
+    else if (second.empty()){
+        cout << "first " << r << endl;
+    }
+    else if (r >= 1000000){
+        cout << "botva" << endl;
+    }
+
+    return 0;
+}
