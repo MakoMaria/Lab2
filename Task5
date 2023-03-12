@@ -3,40 +3,24 @@
 
 using namespace std;
 
-int main() {
-    vector<int> nums; // declare vector
-    int num;
-    char c;
-    while (cin >> num) {
+int main()
+{
+    vector<long long> nums; // declare vector
+    int n;
+    cin >> n;
+    nums.push_back(0);
+    for (int i = 0; i < n; i++) {
+        int num;
+        cin >> num;
         nums.push_back(num);
-        c = getchar();
-        if (c == '\n') {
-            break;
-        }
     }
-
-    int max = 1;
-
-    for (int i = 0; i < nums.size(); i++) {// i = 7 2 1 4 5 1 3 3
-        int res = 1;
-        for (int k = i - 1; k >= 0; k-- ) {
-            if (nums[i] <= nums[k]) {
-                res++;
-            } else {
-                break;
-            }
-        }
-        for (int k = i + 1; k < nums.size(); k++ ) { // 2 3 4 5
-            if (nums[i] <= nums[k]){
-                res++;
-            }
-            else {
-                break;
-            }
-        }
-        if (nums[i] * res > max) {
-            max = nums[i] * res;
-        }
+    long long max = 0;
+    for (long long i = 1; i <= n; i++) {
+        long long right, left;
+        for (left = i; left > 1 && nums[left-1] >= nums[i]; left--);
+        for (right = i; right < n && nums[right+1] >= nums[i]; right++);
+        long long area = (right - left + 1) * nums[i];
+        if (area > max) max = area;
     }
     cout << max;
     return 0;
