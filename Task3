@@ -4,17 +4,17 @@
 
 using namespace std;
 
-void read_nums(queue<int>& aa) {
-    int num;
-    char c;
-    while (cin >> num) {
-        aa.push(num);
-        c = getchar();
-        if (c == '\n') {
-            break;
-        }
-    }
-}
+//void read_nums(queue<int>& aa) {
+//  int num;
+//  char c;
+//    while (cin >> num) {
+//        aa.push(num);
+//        c = getchar();
+//        if (c == '\n') {
+//            break;
+//        }
+//    }
+//}
 
 int main() {
     queue<int> first;
